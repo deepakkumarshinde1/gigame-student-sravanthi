@@ -61,108 +61,157 @@ childFunction.dec();
 //document.querySelector("#parent > .child"); // single element || null
 //document.querySelectorAll(); // multiple element nodeList || []
 
-let h1Element = document.querySelector("#title");
-let parent = document.querySelector("#parent");
-let child = document.querySelector(".child");
-let btn = document.querySelector("#btn");
+// let h1Element = document.querySelector("#title");
+// let parent = document.querySelector("#parent");
+// let child = document.querySelector(".child");
+// let btn = document.querySelector("#btn");
 
-parent.addEventListener("click", () => {
-  console.log("parent");
-});
+// parent.addEventListener("click", () => {
+//   console.log("parent");
+// });
 
-child.addEventListener("click", () => {
-  console.log("child");
-});
+// child.addEventListener("click", () => {
+//   console.log("child");
+// });
 
-btn.addEventListener("click", (event) => {
-  event.stopPropagation();
-  event.preventDefault();
-  console.log("btn");
-  h1Element.innerHTML = "<i>Deeepakkumar</i>";
-});
+// btn.addEventListener("click", (event) => {
+//   event.stopPropagation();
+//   event.preventDefault();
+//   console.log("btn");
+//   h1Element.innerHTML = "<i>Deeepakkumar</i>";
+// });
 
-// prototyping
-String.prototype.getMoreDetails = function () {
-  let _string = this.toString();
-  return {
-    up: _string.toUpperCase(),
-    lc: _string.toLowerCase(),
-    l: _string.length,
+// // prototyping
+// String.prototype.getMoreDetails = function () {
+//   let _string = this.toString();
+//   return {
+//     up: _string.toUpperCase(),
+//     lc: _string.toLowerCase(),
+//     l: _string.length,
+//   };
+// };
+
+// let text = "Deepak";
+// let _text = text.getMoreDetails();
+
+// // constructor function
+// function Human() {
+//   this.name = "Deepak";
+// }
+// Human.prototype.printName = function () {
+//   console.log(this.name);
+// };
+// // prototype inheritance
+
+// function Student() {
+//   this.name = "Kumar";
+// }
+// // copy all prototype of parent to child
+// Student.prototype = Object.create(Human.prototype);
+
+// let human = new Human();
+// human.printName();
+
+// let student = new Student();
+// student.printName();
+
+// // Promise and Async Await
+// // pending => fulfilled or rejected
+// async function fun(a, b) {
+//   if (b === 0) {
+//     return Promise.reject("Number is zero for division");
+//   } else {
+//     return Promise.resolve(a / b);
+//   }
+// } // 10s
+
+// console.log("Hello");
+// fun(5, 0)
+//   .then((result) => {
+//     console.log(result);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   }); // 10s
+// console.log("hi");
+
+// async function fun1(a, b) {
+//   if (b === 0) {
+//     return Promise.reject("Number is zero for division");
+//   } else {
+//     return Promise.resolve(a / b);
+//   }
+// }
+// async function fun2(a, b) {
+//   return Promise.resolve(a * b);
+// }
+// async function fun3(a, b) {
+//   return Promise.resolve(a + b);
+// }
+// async function fun4(a, b) {
+//   return Promise.resolve(a - b);
+// }
+
+// async function calc(a, b) {
+//   try {
+//     let r1 = await fun1(a, b);
+//     let r2 = await fun2(a, r1);
+//     let r3 = await fun3(a, r2);
+//     let r4 = await fun4(a, r3);
+//     console.log(r4);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+// console.log("hello");
+// calc(10, 2);
+// console.log("hi");
+// let counter = 5;
+// let intervalId = setInterval(() => {
+//   if (counter === 0) {
+//     clearInterval(intervalId);
+//   } else {
+//     counter--;
+//     console.log(counter);
+//   }
+// }, 1000);
+
+let input = document.querySelector("input");
+
+function debounce(callback) {
+  let timer = null;
+  return function (event) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      callback(event);
+    }, 1000);
   };
-};
-
-let text = "Deepak";
-let _text = text.getMoreDetails();
-
-// constructor function
-function Human() {
-  this.name = "Deepak";
 }
-Human.prototype.printName = function () {
-  console.log(this.name);
-};
-// prototype inheritance
-
-function Student() {
-  this.name = "Kumar";
-}
-// copy all prototype of parent to child
-Student.prototype = Object.create(Human.prototype);
-
-let human = new Human();
-human.printName();
-
-let student = new Student();
-student.printName();
-
-// Promise and Async Await
-// pending => fulfilled or rejected
-async function fun(a, b) {
-  if (b === 0) {
-    return Promise.reject("Number is zero for division");
-  } else {
-    return Promise.resolve(a / b);
-  }
-} // 10s
-
-console.log("Hello");
-fun(5, 0)
-  .then((result) => {
-    console.log(result);
+input.addEventListener(
+  "keyup",
+  debounce((event) => {
+    console.log("first");
   })
-  .catch((error) => {
-    console.log(error);
-  }); // 10s
-console.log("hi");
+);
+// abc
 
-async function fun1(a, b) {
-  if (b === 0) {
-    return Promise.reject("Number is zero for division");
-  } else {
-    return Promise.resolve(a / b);
-  }
+function throttling(callback) {
+  let isInterval = true;
+  return function (event) {
+    if (isInterval) {
+      isInterval = false;
+      setTimeout(() => {
+        isInterval = true;
+        callback(event);
+      }, 1000);
+    }
+  };
 }
-async function fun2(a, b) {
-  return Promise.resolve(a * b);
-}
-async function fun3(a, b) {
-  return Promise.resolve(a + b);
-}
-async function fun4(a, b) {
-  return Promise.resolve(a - b);
-}
-
-async function calc(a, b) {
-  try {
-    let r1 = await fun1(a, b);
-    let r2 = await fun2(a, r1);
-    let r3 = await fun3(a, r2);
-    let r4 = await fun4(a, r3);
-    console.log(r4);
-  } catch (error) {
-    console.log(error);
-  }
-}
-console.log("hello");
-calc(10, 2);
-console.log("hi");
+window.addEventListener(
+  "scroll",
+  throttling((event) => {
+    console.log("scroll");
+  })
+);
