@@ -74,13 +74,84 @@ console.log(gen.next());
 console.log(gen.next());
 console.log(gen.next());
 
+// deep copy and shallow copy
+// let array5 = [100,200,[300],400]
+let array3 = [10, 20, [30], 40];
+array3 = [10, 20, 40];
+let array4 = array3;
+array4[2][0] = 300;
+
+console.log(array3);
+console.log(array4);
+
+function deepClone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
 // Iterators & Iterables
+let arrays = [10, 20, 30, 40, 50];
+let iterator = arrays[Symbol.iterator]();
+console.clear();
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+
+let customIterator = {
+  data: JSON.parse(JSON.stringify(arrays)),
+  [Symbol.iterator]() {
+    let index = -1;
+    return {
+      next() {
+        if (index === data.length - 1) {
+          index = -1;
+        }
+        index++;
+        let object = { value: data[index], done: false };
+        return { ...object };
+      },
+      previous() {
+        if (index === -1) {
+          index = data.length;
+        }
+        index--;
+        let object = { value: data[index], done: false };
+        return { ...object };
+      },
+    };
+  },
+};
+
+console.clear();
+let arrays1 = [10, 20, 30, 40, 50];
+customIterator.data = arrays1;
+let it = customIterator[Symbol.iterator]();
+console.log(Intl);
 // Collections;
 // •	Map
 // •	Set
 // •	WeakMap
 // •	WeakSet
+
 // Symbols
 // 	•	Creating unique identifiers
 // 	•	Symbol properties
 // 	•	Use in private-like object keys
+console.clear();
+// let token = Symbol("key");
+// let token1 = Symbol("key");
+let users = {
+  name: "Deepak",
+  email: "deepakkumar.shinde0@gmail.com",
+  [Symbol.for("key")]: "HKJJKSGD&^I*UTGDUY#^%I&Yg",
+};
+let email = Symbol("Key");
+console.clear();
+for (const key in users) {
+  console.log(key);
+}
+console.clear();
+console.log(token === token1);
+
+console.log(users[Symbol.for("key")]);
