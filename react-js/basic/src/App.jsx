@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// component => Basic building block of react js
+
+import { useState } from "react";
+import Users from "./components/Users";
+import Login from "./components/Login";
+import CreateAccount from "./components/CreateAccount";
+
+// function or class
 
 function App() {
-  const [count, setCount] = useState(0)
+  let [input, setInput] = useState("kumar");
+  let [users, setUSers] = useState([]);
+  let [todo, setTodo] = useState({ name: "MyTodo" });
+  let [toggle, setToggle] = useState(false);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <input type="text" value={input} />
+      <h1>Hi {todo.name}</h1>
+      <h1>Deeepak</h1>
+      <Users />
+      <Users />
+      <Users />
 
-export default App
+      <Login />
+      <CreateAccount />
+    </>
+  );
+}
+export default App;
+
+// only one parent is allow to JSX
+// <></> or React.Fragment => JSX Fragment
+// class => className
+// for => htmlFor
