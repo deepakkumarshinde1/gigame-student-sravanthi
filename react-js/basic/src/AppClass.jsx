@@ -12,9 +12,26 @@ class AppClass extends Component {
       toggle: false,
     };
   }
+  inc() {
+    // this.setState((oldState) => {
+    //   return {
+    //     ...oldState,
+    //     count: oldState.count + 1,
+    //   };
+    // });
+
+    this.setState((oldState) => ({
+      ...oldState,
+      count: oldState.count + 1,
+      input: "deepak",
+    }));
+
+    this.setState({ ...this.state, count: this.state.count + 1 });
+  }
   render() {
     return (
       <>
+        <button>INC</button>
         <h1>Hello</h1>
       </>
     );
