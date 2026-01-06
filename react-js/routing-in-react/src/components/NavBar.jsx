@@ -1,8 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "../css/NavBar.css";
 import { useState } from "react";
+import { useCartContext } from "../context/cart.context";
 
 function NavBar() {
+  let { cart } = useCartContext();
   let navigate = useNavigate();
   let [toggle, setToggle] = useState(false);
   return (
@@ -23,7 +25,7 @@ function NavBar() {
       <div className="nav-right">
         <div className="cart" onClick={() => navigate("/cart")}>
           🛒
-          <span className="cart-count">2</span>
+          <span className="cart-count">{cart.length}</span>
         </div>
 
         <div className="profile-wrapper" onClick={() => setToggle(!toggle)}>

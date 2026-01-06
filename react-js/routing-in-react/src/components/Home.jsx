@@ -33,7 +33,8 @@ function Home() {
             <div className="feature-icon">✨</div>
             <h3 className="feature-title">Premium Quality</h3>
             <p className="feature-desc">
-              Curated products from top-tier brands ensuring durability and style.
+              Curated products from top-tier brands ensuring durability and
+              style.
             </p>
           </div>
           <div className="feature-card">
@@ -47,7 +48,8 @@ function Home() {
             <div className="feature-icon">🛡️</div>
             <div className="feature-title">Secure Warranty</div>
             <p className="feature-desc">
-              2-year comprehensive warranty on all electronics and premium goods.
+              2-year comprehensive warranty on all electronics and premium
+              goods.
             </p>
           </div>
         </div>
@@ -116,7 +118,10 @@ function Home() {
       <section className="newsletter-section">
         <div className="newsletter-content">
           <h2>Join Our Community</h2>
-          <p>Subscribe for exclusive drops, early access, and 10% off your first order.</p>
+          <p>
+            Subscribe for exclusive drops, early access, and 10% off your first
+            order.
+          </p>
           <div className="newsletter-input-group">
             <input
               type="email"
