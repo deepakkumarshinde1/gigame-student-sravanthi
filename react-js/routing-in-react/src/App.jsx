@@ -7,18 +7,34 @@ import CreateAccount from "./components/CreateAccount";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
 import PageNotFound from "./components/PageNotFound";
+import { useState } from "react";
+import ProtectedRouting from "./components/ProtectedRouting";
 
 function App() {
+  let [isLogin] = useState(true);
   return (
     <>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/profile" element={<UserProfile />} />
-        <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path=""
+          element={<ProtectedRouting isLogin={isLogin} type={1} />}
+        >
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/cart" element={<Cart />} />
+        </Route>
+
+        <Route
+          path=""
+          element={<ProtectedRouting isLogin={isLogin} type={2} />}
+        >
+          <Route path="/create-account" element={<CreateAccount />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+
         {/* <Route path="*" element={<PageNotFound />} /> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
